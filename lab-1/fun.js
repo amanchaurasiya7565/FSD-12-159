@@ -4,3 +4,9 @@ const toWord = (digit) => {
     return words[digit];
 }
 console.log(toWord(5));
+/*
+front end --> react ,flask ,Vue ,angular
+common (html, css(bootstrap,tailwind), js)
+backend --> nodejs ,spring boot, fast api ,django ,php ,flask v
+*/
+
