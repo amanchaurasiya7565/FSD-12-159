@@ -1,12 +1,20 @@
-// waf to take any digit (0-9) and return its in word as like 0 -one ,5-five .
-const toWord = (digit) => {
-    const words = ["Zero", "One", "two", "three", "Four", "five", "six", "sevem", "Eight", "Nine"];
-    return words[digit];
+const f1 = () => {
+    console.log("F1");
+};
+const f2 = () => {
+    console.log("F2");
+};
+const f3 = () => {
+    console.log("F3");
+};
+function main() {
+    console.log("main");
+    setTimeout(f1, 0);//not wait of this function for running it pass it.
+    // setInterval(f1, 1000);//it take some time t0 execuite
+    setImmediate(f2);
+   
+    
+    f3();
+    console.log("end");
 }
-console.log(toWord(5));
-/*
-front end --> react ,flask ,Vue ,angular
-common (html, css(bootstrap,tailwind), js)
-backend --> nodejs ,spring boot, fast api ,django ,php ,flask v
-*/
-
+main();
