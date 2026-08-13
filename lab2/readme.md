@@ -7,3 +7,11 @@
  5. stream -> readstream,write stream
 
  all function are promise so it must be called with await keyword
+ # Write
+ - it always create a new file then write the text. 
+ # Apend
+- it means when we apend then previous file append text without removing previous.
+# Read 
+- it's  read the file .
+# Try-catch-finally-throw(these are block)
+- 
