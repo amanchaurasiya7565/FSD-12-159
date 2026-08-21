@@ -28,7 +28,47 @@ const addTOCart = async (product) => {
 const showCart = async () => {
     const data = await getCart();
     console.table(data);
-}
+    // let total = 0;
+    //  data.forEach(item => {
+    //   total += item.qty * item.price;
+    // });
+    // console.log("total price:", total);
+
+    const total = data.reduce((sum, item) => sum + item.qty * item.price, 0);
+    console.log("total price:", total);
+
+};
+const removefromkart = async (pid) => {
+    
+    const data = await getCart();
+    const count = data.length;
+    const newData = data.filter((item) => item.id != pid);
+    const newCount = newData.length;
+    if (count == newCount) {
+        console.log(`Product with id ${pid} not find`);
+    }
+    else {
+        await saveCart(newData);
+        console.log(`product with id ${pid} deleted successfully`);
+        
+    }
+    
+};
+
+
+const updateCart = async (pid, value) => {
+    const data = await getCart();
+    const isFound = data.find((item) => item.id === pid);
+    if (isFound) {
+        isFound.qty += value;
+        await saveCart(data);
+        console.log("Product quantity updated successfully");
+
+    }
+    else {
+        console.log("Product id not found");
+    }
+};
 const main = async() => {
     let choice;
     const cin = Readline.createInterface({ input: stdin, output: stdout });
@@ -57,10 +97,15 @@ const main = async() => {
                 break;
             
             case 3:
-                console.log('Remove product');
+                let pid =await cin.question("Enter product id:");
+                
+                await removefromkart(Number(pid));
                 break;
             case 4:
-                console.log('Update Product Quantity');
+                let pid2 = await cin.question("Enter product id to update");
+                let value = await cin.question(" +1 increase ,-1 decrease ");
+                
+               await updateCart(Number(pid),Number(value));
                 break;
             case 5:
                 console.log('See you later');
